@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Typing Speed Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 80px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+
+    #word {
+      font-size: 32px;
+      font-weight: bold;
+      margin: 20px;
+    }
+
+    #input {
+      font-size: 20px;
+      padding: 10px;
+      width: 300px;
+    }
+
+    #result, #timer {
+      margin: 20px;
+      font-size: 22px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>⌨️ Typing Speed Game</h1>
+  <p>Type the word below as fast as you can and press Enter!</p>
+
+  <div id="word">loading...</div>
+
+  <input type="text" id="input" placeholder="Type here..." autocomplete="off" />
+  <div id="timer">Time: 0s</div>
+  <div id="result"></div>
+
+  <button onclick="restartGame()">Restart Game</button>
+
+  <script>
+    const words = [
+      "javascript", "developer", "keyboard", "challenge", "function", "variable",
+      "performance", "typing", "language", "interface", "frontend", "backend","datatype","computer"
+    ];
+
+    const wordDisplay = document.getElementById("word");
+    const inputField = document.getElementById("input");
+    const timerDisplay = document.getElementById("timer");
+    const resultDisplay = document.getElementById("result");
+
+    let currentWord = "";
+    let startTime;
+    let timerInterval;
+    let timeoutLimit = 10; // 10 seconds max per word
+    let gameRunning = true;
+
+    function startNewWord() {
+      if (!gameRunning) return;
+
+      currentWord = words[Math.floor(Math.random() * words.length)];
+      wordDisplay.textContent = currentWord;
+      inputField.value = "";
+      resultDisplay.textContent = "";
+      inputField.disabled = false;
+      inputField.focus();
+
+      startTime = new Date().getTime();
+      updateTimer(); // reset to 0s
+      clearInterval(timerInterval);
+      timerInterval = setInterval(updateTimer, 100);
+    }
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const seconds = ((now - startTime) / 1000).toFixed(1);
+      timerDisplay.textContent = `Time: ${seconds}s`;
+
+      // Check if time exceeds 15 seconds
+      if (seconds >= timeoutLimit) {
+        endGame("⏱️ Time's up! Game over.");
+      }
+    }
+
+    function endGame(message) {
+      gameRunning = false;
+      inputField.disabled = true;
+      resultDisplay.textContent = message;
+      clearInterval(timerInterval);
+    }
+
+    function restartGame() {
+      gameRunning = true;
+      resultDisplay.textContent = "";
+      startNewWord();
+    }
+
+    // Event: when user presses Enter
+    inputField.addEventListener("keydown", function(e) {
+      if (!gameRunning) return;
+
+      if (e.key === "Enter") {
+        const typed = inputField.value.trim();
+        const now = new Date().getTime();
+        const timeTaken = (now - startTime) / 1000;
+
+        if (typed === currentWord) {
+          const wpm = Math.round((60 / timeTaken));
+          resultDisplay.textContent = `✅ ${typed} - ${wpm} WPM in ${timeTaken.toFixed(1)}s`;
+          startNewWord(); // next word
+        } else {
+          resultDisplay.textContent = "❌ Incorrect! Try again.";
+        }
+      }
+    });
+
+    // Start first round
+    restartGame();
+  </script>
+
+</body>
+</html>

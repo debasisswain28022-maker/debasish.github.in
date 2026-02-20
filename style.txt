@@ -1,0 +1,43 @@
+<style>
+    body {
+      background-color: #e0f7fa;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #00796b;
+    }
+
+    ul {
+      line-height: 1.8;
+    }
+    .back-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .back-button:hover {
+      background-color: #6f079c;
+    }
+     nav {
+      background-color: #444;
+      padding: 10px;
+      text-align: center;
+    }
+
+     nav a {
+      color: blue; /* Change to any color you want */
+      text-decoration: none; /* Optional: removes underline */
+      font-weight: bold;     /* Optional: makes the text bold */
+    }
+  </style>
+

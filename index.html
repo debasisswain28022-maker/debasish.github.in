@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            
+            
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+            background-color: white;
+        }
+        footer {
+            background-color: #673d80;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+          /* Menu button style */
+    .menu-container {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+     /* ====== The 3-dot icon ====== */
+    .menu-button {
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+      /* Dropdown menu style */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 10px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      min-width: 160px;
+      box-shadow: 0 2px 5px rgba(195, 20, 20, 0.15);
+      z-index: 1;
+    }
+    .dropdown a {
+      display: block;
+      padding: 10px;
+      color: #000000;
+      text-decoration: none;
+    }
+
+    .dropdown a:hover {
+      background-color: #f2f2f2;
+    }
+
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>Welcome to My Website</h1>
+        <p>Your first step into web development</p>
+    </header>
+
+    <nav>
+        <a href=index.html>Home</a>
+        <a href=about.html>About</a>
+        <a href=contact.html>Contact</a>
+        <a href=htmlnotes.html>HTML</a>
+        <a href=python.html>Python</a>
+        <a href=game.html>Game</a>
+    </nav>
+
+    <main>
+        <h2>About This Site</h2>
+        <p>This is a simple website created using only HTML and a little CSS for styling.</p>
+        <p>You can expand this by adding more pages, images, and interactive elements using JavaScript.</p>
+    </main>
+
+    <footer>
+        <p>&copy; DEBASISH</p>
+    </footer>
+
+    <!-- used for menu (starting) --> 
+     <div class="menu-container">
+    <button class="menu-button" onclick="toggleMenu()">&#8942;</button> <!-- Unicode for vertical 3 dots -->
+    <div class="dropdown" id="dropdownMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="htmlnotes.html">HTML </a>
+      <a href="python.html">Python </a>
+      <a href=game.html>Game</a>
+     
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById("dropdownMenu");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+      // Optional: hide menu if clicked outside
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-button')) {
+        var dropdown = document.getElementById("dropdownMenu");
+        if (dropdown.style.display === "block") {
+          dropdown.style.display = "none";
+        }
+      }
+    };
+  </script>
+     <!-- used for menu (end) --> 
+
+    
+
+</body>
+</html>
